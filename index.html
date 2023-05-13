@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lista de Compras</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    button {
+      padding: 10px;
+      margin-right: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    li span {
+      flex-grow: 1;
+    }
+
+    li button {
+      background-color: #f44336;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    li button:hover {
+      background-color: #c62828;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lista de Compras</h1>
+
+  <input type="text" id="item-input" placeholder="Nome do Produto">
+  <input type="number" id="quantity-input" placeholder="Quantidade">
+  <button onclick="adicionarItem()">Adicionar</button>
+  
+  <ul id="item-list"></ul>
+
+  <script>
+    var listaDeCompras = [];
+
+    function adicionarItem() {
+      var itemInput = document.getElementById("item-input");
+      var quantityInput = document.getElementById("quantity-input");
+      var item = itemInput.value.trim();
+      var quantity = parseInt(quantityInput.value);
+
+      if (item !== "" && !isNaN(quantity)) {
+        var newItem = {
+          nome: item,
+          quantidade: quantity
+        };
+
+        listaDeCompras.push(newItem);
+        atualizarLista();
+        itemInput.value = "";
+        quantityInput.value = "";
+      }
+    }
+
+    function removerItem(index) {
+      var item = listaDeCompras[index].nome;
+      var confirmacao = confirm("Tem certeza que deseja remover o item '" + item + "'?");
+
+      if (confirmacao) {
+        listaDeCompras.splice(index, 1);
+        atualizarLista();
+      }
+    }
+
+    function atualizarLista() {
+      var itemList = document.getElementById("item-list");
+      itemList.innerHTML = "";
+
+      for (var i = 0; i < listaDeCompras.length; i++) {
+        var item = listaDeCompras[i];
+
+        var li = document.createElement("li");
+        var itemText = document.createTextNode(item.nome + " - " + item.quantidade);
+        li.appendChild(itemText);
+
+        var button = document.createElement("button");
+        button.appendChild(document.createTextNode("Remover"));
+        button.onclick = (function(index) {
+          return function() {
+            removerItem(index);
+          }
+        })(i);
+
+        li.appendChild(button);
+        itemList.appendChild(li);
+      }
+    }
+  </script>
+</body>
+</html>
