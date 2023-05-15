@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-// DefiniÁ„o da classe Paciente
+// Defini√ß√£o da classe Paciente
 class Paciente {
 public:
     string nome;
@@ -17,7 +17,7 @@ public:
     }
 };
 
-// DefiniÁ„o da classe ListaPacientes
+// Defini√ß√£o da classe ListaPacientes
 class ListaPacientes {
 private:
     Paciente* cabeca;
@@ -42,11 +42,11 @@ public:
 
     void listarPacientes() {
         if (cabeca == NULL) {
-            cout << "A lista de pacientes est· vazia." << endl;
+            cout << "A lista de pacientes est√° vazia." << endl;
         } else {
             Paciente* atual = cabeca;
             while (atual != NULL) {
-                cout << "Nome: " << atual->nome << ", IdentificaÁ„o: " << atual->identificacao << ", Estado de Sa˙de: " << atual->estado_saude << endl;
+                cout << "Nome: " << atual->nome << ", Identifica√ß√£o: " << atual->identificacao << ", Estado de Sa√∫de: " << atual->estado_saude << endl;
                 atual = atual->proximo;
             }
         }
@@ -56,10 +56,10 @@ public:
 int main() {
     ListaPacientes listaPacientes;
 
-    // Adicionando pacientes ‡ lista
-    listaPacientes.adicionarPaciente("Jo„o", 1, "Est·vel em tratamento intensivo");
-    listaPacientes.adicionarPaciente("Maria", 2, "Em estado crÌtico");
-    listaPacientes.adicionarPaciente("Pedro", 3, "Est·vel");
+    // Adicionando pacientes √† lista
+    listaPacientes.adicionarPaciente("Jo√£o", 1, "Est√°vel em tratamento intensivo");
+    listaPacientes.adicionarPaciente("Maria", 2, "Em estado cr√≠tico");
+    listaPacientes.adicionarPaciente("Pedro", 3, "Est√°vel");
 
     // Listando os pacientes
     listaPacientes.listarPacientes();
